@@ -10,4 +10,10 @@
         <item name="windowActionBar">false</item>
     </style>
 
+
+<!--    launcher screen theme-->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/launcher_bg</item>
+    </style>
+    
 </resources>
