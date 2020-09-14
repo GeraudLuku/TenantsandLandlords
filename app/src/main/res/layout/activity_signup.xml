@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/googleButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -104,7 +104,7 @@
 
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -116,7 +116,7 @@
             android:textColor="@color/text_secondary" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/appleButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
