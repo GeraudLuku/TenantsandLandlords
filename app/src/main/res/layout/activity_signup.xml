@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".registration.SignupActivity">
 
+    <LinearLayout
+        android:id="@+id/progressView"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:gravity="center"
+        android:alpha="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -35,7 +55,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:text="Choose Account Type"
         android:textColor="@color/text_primary"
         android:textSize="18sp"
@@ -80,7 +100,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="35dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,11 +115,12 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:background="@drawable/button_bg"
-            android:backgroundTint="#fffafa"
+            android:backgroundTint="#4c8bf5"
             android:drawableStart="@drawable/google_icon"
             android:padding="5dp"
             android:text="Sign up with Google"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
 
@@ -168,7 +189,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="5dp"
         android:text="Tenant"
-        android:textColor="@color/text_secondary"
+        android:textColor="@color/text_primary"
         app:layout_constraintStart_toStartOf="@+id/radioGroup"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
