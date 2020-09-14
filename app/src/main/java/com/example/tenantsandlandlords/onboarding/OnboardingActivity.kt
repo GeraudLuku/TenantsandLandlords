@@ -3,7 +3,6 @@ package com.example.tenantsandlandlords.onboarding
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -39,7 +38,13 @@ class OnboardingActivity : AppCompatActivity() {
         nextBtn.setOnClickListener {
             if (mCurrentPage == mDots.size - 1) {
                 //navigate to sign up activity
-                startActivity(Intent(this,MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
+                //set sharedpreferences value for first time started the app to false
+                val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
+                val editor = prefs.edit()
+                editor.putBoolean("firstStart", false)
+                editor.apply()
+                finish()
             } else
                 slideViewPager.currentItem = mCurrentPage + 1
         }
