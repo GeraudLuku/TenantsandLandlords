@@ -113,10 +113,7 @@ class SignupActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     //if it was successfully uploaded into the database
                     progressView.visibility = View.INVISIBLE
-                    showSnackbar(
-                        "Successfully uploaded user data...",
-                        MinimalKSnackStyle.STYLE_SUCCESS
-                    )
+                    Log.d("SignUP", "Successfully uploaded user data...")
                     //send user to main activity
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()

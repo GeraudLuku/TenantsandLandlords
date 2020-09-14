@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tenantsandlandlords.MainActivity
 import com.example.tenantsandlandlords.onboarding.OnboardingActivity
-import com.example.tenantsandlandlords.registration.SignupActivity
+import com.example.tenantsandlandlords.registration.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -43,7 +43,7 @@ class SplashActivity : AppCompatActivity() {
             finish()
         } else {
             //goto the registration section(Login and SignUp)
-            startActivity(Intent(this, SignupActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 
