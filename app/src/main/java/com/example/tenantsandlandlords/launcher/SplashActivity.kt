@@ -25,5 +25,6 @@ class SplashActivity : AppCompatActivity() {
         } else
         //goto the registration section(Login and SignUp)
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
     }
 }
