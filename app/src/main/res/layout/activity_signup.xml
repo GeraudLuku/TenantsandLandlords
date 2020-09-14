@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.LoginActivity">
+    tools:context=".registration.SignupActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="60dp"
-        android:text="Welcome,"
+        android:text="Create Account,"
         android:textColor="@color/text_primary"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,36 +25,80 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="8dp"
-        android:text="Sign in to continue!"
+        android:text="Sign up to get started!"
         android:textColor="@color/text_secondary"
-        android:textSize="28sp"
+        android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Choose Account Type"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <RadioButton
+            android:id="@+id/tenantButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/acount_type_selector"
+            android:button="@drawable/tenant"
+            android:padding="5dp" />
+
+        <RadioButton
+            android:id="@+id/landlordButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/acount_type_selector"
+            android:button="@drawable/landlord"
+            android:padding="5dp" />
+
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="35dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:padding="5dp"
             android:layout_weight="2"
             android:background="@drawable/button_bg"
             android:backgroundTint="#fffafa"
-            android:text="Sign in with Google"
             android:drawableStart="@drawable/google_icon"
+            android:padding="5dp"
+            android:text="Sign up with Google"
             android:textAllCaps="false"
             android:textSize="16sp" />
 
@@ -76,14 +120,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:padding="5dp"
             android:layout_weight="2"
             android:background="@drawable/button_bg"
-            android:text="Sign in with Apple"
-            android:textColor="@color/white"
-            android:drawableStart="@drawable/apple_icon"
             android:backgroundTint="@android:color/black"
+            android:drawableStart="@drawable/apple_icon"
+            android:padding="5dp"
+            android:text="Sign up with Apple"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
     </LinearLayout>
@@ -101,20 +145,42 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I'm a new user,"
+            android:text="I'm already a memeber,"
             android:textColor="@color/text_primary" />
 
         <Button
-            android:id="@+id/signupButton"
+            android:id="@+id/signinButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:background="@android:color/transparent"
-            android:text="Sign Up"
+            android:text="Sign In"
             android:textAllCaps="false"
             android:textColor="@color/glamour"
             android:textSize="14sp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="5dp"
+        android:text="Tenant"
+        android:textColor="@color/text_secondary"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="24dp"
+        android:text="Landlord"
+        android:textColor="@color/text_primary"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
