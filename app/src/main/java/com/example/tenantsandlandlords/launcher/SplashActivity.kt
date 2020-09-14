@@ -11,10 +11,17 @@ import com.google.firebase.auth.FirebaseUser
 
 
 class SplashActivity : AppCompatActivity() {
+
     private var mCurrentUser: FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         //get current user
         mCurrentUser = FirebaseAuth.getInstance().currentUser
@@ -39,5 +46,6 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, SignupActivity::class.java))
             finish()
         }
+
     }
 }

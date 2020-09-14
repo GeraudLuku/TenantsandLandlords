@@ -7,5 +7,5 @@
 
     <stroke
         android:color="@color/electron_blue"
-        android:width="2dp" />
+        android:width="7dp" />
 </shape>
