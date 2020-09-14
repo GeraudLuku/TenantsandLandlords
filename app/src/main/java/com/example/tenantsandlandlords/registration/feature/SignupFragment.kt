@@ -1,11 +1,14 @@
-package com.example.tenantsandlandlords.registration
+package com.example.tenantsandlandlords.registration.feature
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.example.tenantsandlandlords.MainActivity
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.tenantsandlandlords.R
 import com.example.tenantsandlandlords.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,10 +23,12 @@ import com.google.firebase.database.FirebaseDatabase
 import com.onurkagan.ksnack_lib.Animations.Fade
 import com.onurkagan.ksnack_lib.MinimalKSnack.MinimalKSnack
 import com.onurkagan.ksnack_lib.MinimalKSnack.MinimalKSnackStyle
-import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.fragment_signup.*
 
 
-class SignupActivity : AppCompatActivity() {
+class SignupFragment : Fragment() {
+
+    private lateinit var mNavController: NavController
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
@@ -36,15 +41,19 @@ class SignupActivity : AppCompatActivity() {
 
     private lateinit var mDatabase: DatabaseReference
 
-
-    override fun onStart() {
-        super.onStart()
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_signup, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //get navigation controller
+        mNavController = findNavController()
 
         //minimalistic snack bar
         mMinimalSnackBar = MinimalKSnack(this)
@@ -58,8 +67,7 @@ class SignupActivity : AppCompatActivity() {
         googleSignupRequest()
 
         signinButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            mNavController.navigate(R.id.action_signupFragment_to_loginFragment)
         }
 
         //get selected category
@@ -115,8 +123,7 @@ class SignupActivity : AppCompatActivity() {
                     progressView.visibility = View.INVISIBLE
                     Log.d("SignUP", "Successfully uploaded user data...")
                     //send user to main activity
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    mNavController.navigate(R.id.action_signupFragment_to_mainActivity)
                 }
                 .addOnFailureListener {
                     //if it failed to upload into the database
@@ -136,7 +143,9 @@ class SignupActivity : AppCompatActivity() {
             .build()
 
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        context?.let {
+            mGoogleSignInClient = GoogleSignIn.getClient(it, gso)
+        }
     }
 
     private fun signIn() {
@@ -169,7 +178,7 @@ class SignupActivity : AppCompatActivity() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Google", "signInWithCredential:success")

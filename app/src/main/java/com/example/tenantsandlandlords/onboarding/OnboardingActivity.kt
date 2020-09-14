@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.tenantsandlandlords.R
-import com.example.tenantsandlandlords.registration.SignupActivity
+import com.example.tenantsandlandlords.registration.RegistrationActivity
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
 
@@ -38,7 +38,7 @@ class OnboardingActivity : AppCompatActivity() {
         nextBtn.setOnClickListener {
             if (mCurrentPage == mDots.size - 1) {
                 //navigate to sign up activity
-                startActivity(Intent(this, SignupActivity::class.java))
+                startActivity(Intent(this, RegistrationActivity::class.java))
                 //set sharedpreferences value for first time started the app to false
                 val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
                 val editor = prefs.edit()

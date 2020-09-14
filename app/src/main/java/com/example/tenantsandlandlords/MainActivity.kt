@@ -3,7 +3,7 @@ package com.example.tenantsandlandlords
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tenantsandlandlords.registration.LoginActivity
+import com.example.tenantsandlandlords.registration.RegistrationActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.onurkagan.ksnack_lib.Animations.Fade
 import com.onurkagan.ksnack_lib.MinimalKSnack.MinimalKSnack
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             FirebaseAuth.getInstance()
                 .signOut()
             //send user to login activity
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, RegistrationActivity::class.java))
             finish()
         }
     }

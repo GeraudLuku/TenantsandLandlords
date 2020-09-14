@@ -1,11 +1,14 @@
-package com.example.tenantsandlandlords.registration
+package com.example.tenantsandlandlords.registration.feature
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.example.tenantsandlandlords.MainActivity
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.tenantsandlandlords.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -16,9 +19,12 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.onurkagan.ksnack_lib.Animations.Fade
 import com.onurkagan.ksnack_lib.MinimalKSnack.MinimalKSnack
 import com.onurkagan.ksnack_lib.MinimalKSnack.MinimalKSnackStyle
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : Fragment() {
+
+    private lateinit var mNavController: NavController
+
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
 
@@ -26,10 +32,19 @@ class LoginActivity : AppCompatActivity() {
 
     private val RC_SIGN_IN = 1234
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_login, container, false)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //get navigation controller
+        mNavController = findNavController()
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -41,8 +56,7 @@ class LoginActivity : AppCompatActivity() {
 
         //send user to sign up for a new account
         signupButton.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java))
-            finish()
+            mNavController.navigate(R.id.action_loginFragment_to_signupFragment)
         }
 
         //sign in user to app using google authentication
@@ -51,7 +65,9 @@ class LoginActivity : AppCompatActivity() {
             signIn()
             overlayView.visibility = View.VISIBLE
         }
+
     }
+
 
     //create google signin request
     fun googleSignupRequest() {
@@ -62,7 +78,9 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        context?.let {
+            mGoogleSignInClient = GoogleSignIn.getClient(it, gso);
+        }
     }
 
     private fun signIn() {
@@ -94,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Google", "signInWithCredential:success")
@@ -102,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
                     val user = mAuth.currentUser
                     //send user to main activity
                     overlayView.visibility = View.INVISIBLE
-                    startActivity(Intent(this, MainActivity::class.java))
+                    mNavController.navigate(R.id.action_loginFragment_to_mainActivity)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.e("Google", "signInWithCredential:failure", task.exception)
