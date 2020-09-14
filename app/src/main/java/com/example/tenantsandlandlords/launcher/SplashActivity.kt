@@ -3,8 +3,8 @@ package com.example.tenantsandlandlords.launcher
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tenantsandlandlords.MainActivity
 import com.example.tenantsandlandlords.onboarding.OnboardingActivity
+import com.example.tenantsandlandlords.registration.LoginActivity
 
 
 class SplashActivity : AppCompatActivity() {
@@ -23,6 +23,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else
-            startActivity(Intent(this, MainActivity::class.java))
+        //goto the registration section(Login and SignUp)
+            startActivity(Intent(this, LoginActivity::class.java))
     }
 }

@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.example.tenantsandlandlords.MainActivity
 import com.example.tenantsandlandlords.R
+import com.example.tenantsandlandlords.registration.LoginActivity
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
 
@@ -32,13 +32,13 @@ class OnboardingActivity : AppCompatActivity() {
         slideViewPager.addOnPageChangeListener(viewPagerPageChangeListener)
 
         //create dots on screen
-        addDotIndicator(0)
+        addDotIndicator(mCurrentPage)
 
         //set next button on click listener
         nextBtn.setOnClickListener {
             if (mCurrentPage == mDots.size - 1) {
                 //navigate to sign up activity
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 //set sharedpreferences value for first time started the app to false
                 val prefs = getSharedPreferences("prefs", MODE_PRIVATE)
                 val editor = prefs.edit()
